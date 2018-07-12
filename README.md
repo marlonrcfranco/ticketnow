@@ -4,7 +4,7 @@ Trabalho referente ao segundo bimestre (2018) da disciplina 23098-Sistemas Distr
 ## Autores
 
 * **Marlon R C Franco** - *59782* - [marlonrcfranco](https://github.com/marlonrcfranco)
-* **Vinicius Lucena dos Santos** - ** - []()
+* **Vinicius Lucena dos Santos** - *85522* - []()
 
 
 ### Pré-requisitos
