@@ -6,13 +6,20 @@
 
 package clientetuplespace;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.lang.String;
+import java.util.Arrays;
+import org.mozartspaces.capi3.AnyCoordinator;
+import org.mozartspaces.capi3.LindaCoordinator;
+import org.mozartspaces.capi3.Selector;
 
 import org.mozartspaces.core.Capi;
 import org.mozartspaces.core.ContainerReference;
 import org.mozartspaces.core.DefaultMzsCore;
 import org.mozartspaces.core.Entry;
 import org.mozartspaces.core.MzsCore;
+import org.mozartspaces.core.MzsCoreException;
 
 /**
  * A simple "Hello, space!" example with the MozartSpaces core. First a core
@@ -21,28 +28,46 @@ import org.mozartspaces.core.MzsCore;
  * container is destroyed and the core is shut down.
  */
 public class ClienteTupleSpace {
+    private MzsCore core;
+    private Capi capi;
+    private ContainerReference container;
 
-    public static void main(final String[] args) throws Exception {
-        System.out.println();
-        System.out.println("MozartSpaces: simple 'Hello, space!' with synchronous core interface");
-
-        // create an embedded space and construct a Capi instance for it
-        MzsCore core = DefaultMzsCore.newInstance();
-        Capi capi = new Capi(core);
-        // create a container
-        ContainerReference container = capi.createContainer();
-        // write an entry to the container
-        capi.write(container, new Entry("Hello, space!"));
-        System.out.println("Entry written");
-        // read an entry from the container
-        ArrayList<String> resultEntries = capi.read(container);
-        System.out.println("Entry read: " + resultEntries.get(0));
-        // destroy the container
-        capi.destroyContainer(container, null);
-
-        // shutdown the core
-        core.shutdown(true);
-
+    public ClienteTupleSpace() throws MzsCoreException  {
+        init();
     }
     
+    public void init() throws MzsCoreException {
+        System.out.println("Inicializando o Espaco");
+        this.core = DefaultMzsCore.newInstance();
+        this.capi = new Capi(core);
+        this.container = capi.createContainer(null, Arrays.asList(new LindaCoordinator(false)), null);
+    }
+    
+    public void write(int numeroAssento, char letraFileira) throws MzsCoreException {
+        Assento oAssento = new Assento(numeroAssento, letraFileira);
+        capi.write(container, new Entry((Serializable) oAssento));
+    }
+    
+    public ArrayList<Assento> read(int numeroAssento, char letraFileira) throws MzsCoreException {
+        ArrayList<Assento> resultadoPesquisa;
+        Assento template = new Assento(numeroAssento, letraFileira);
+        
+        LindaCoordinator.LindaSelector newSelector = LindaCoordinator.newSelector(template);
+        
+        resultadoPesquisa = capi.read(container, newSelector, 90, null);
+        return resultadoPesquisa;
+    }
+    
+
+    public ArrayList<Assento> take(int numeroAssento, char letraFileira) throws MzsCoreException {
+        ArrayList<Assento> resultadoPesquisa;
+        Assento template = new Assento(numeroAssento, letraFileira);
+        
+        LindaCoordinator.LindaSelector newSelector = LindaCoordinator.newSelector(template);
+        
+        resultadoPesquisa = capi.take(container, newSelector, 90, null);
+        return resultadoPesquisa;
+    }
+    
+
 }
