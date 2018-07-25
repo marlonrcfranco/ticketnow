@@ -4,15 +4,147 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class Validador extends UnicastRemoteObject implements ValidadorInterface {
-
-	private String message = "Serviço disponível!";
+	/**
+	 * Exemplo de cartoes aceitos: 
+	 * American Express: 378282246310005 
+	 * American Express: 371449635398431 
+	 * American Express Corporate:378734493671000
+	 * Australian BankCard: 5610591081018250 
+	 * Diners Club: 30569309025904 
+	 * Diners Club: 38520000023237 
+	 * Discover: 6011111111111117 
+	 * Discover: 6011000990139424
+	 * JCB: 3530111333300000 
+	 * JCB: 3566002020360505 
+	 * MasterCard: 5555555555554444
+	 * MasterCard: 5105105105105100 
+	 * Visa: 4111111111111111 
+	 * Visa: 40128888888a81881
+	 * Visa: 4222222222222 
+	 * Dankort (PBS): 76009244561 
+	 * Dankort (PBS): 5019717010103742 
+	 * Switch/Solo (Paymentech): 6331101999990016
+	 * 
+	 */
+	public static final int INVALID = -1;
+	public static final int VISA = 0;
+	public static final int MASTERCARD = 1;
+	public static final int AMERICAN_EXPRESS = 2;
+	public static final int EN_ROUTE = 3;
+	public static final int DINERS_CLUB = 4;
+	private static final String[] cardNames = { "Visa", "Mastercard", "American Express", "En Route",
+			"Diner's CLub/Carte Blanche", };
 
 	public Validador() throws RemoteException {
 		super();
 	}
 
-	public String sayHello() throws RemoteException {
-		return message;
+	public String teste() throws RemoteException {
+		return "Servidor online.";
 	}
 
+	public String ValidaCC(String number) {
+		if (getCardID(number) != -1) {
+			if(validCCNumber(number)) return "Cartão validado com sucesso!";
+		}
+		return "ERRO: Cartão inválido.";
+	}
+
+	/**
+	 * Get the Card type returns the credit card type INVALID = -1; VISA = 0;
+	 * MASTERCARD = 1; AMERICAN_EXPRESS = 2; EN_ROUTE = 3; DINERS_CLUB = 4;
+	 */
+	public static int getCardID(String number) {
+		int valid = INVALID;
+		String digit1 = number.substring(0, 1);
+		String digit2 = number.substring(0, 2);
+		String digit3 = number.substring(0, 3);
+		String digit4 = number.substring(0, 4);
+		if (isNumber(number)) {
+			/*
+			 * ----* VISA prefix=4* ---- length=13 or 16 (can be 15 too!?! maybe)
+			 */
+			if (digit1.equals("4")) {
+				if (number.length() == 13 || number.length() == 16)
+					valid = VISA;
+			}
+			/*
+			 * ----------* MASTERCARD prefix= 51 ... 55* ---------- length= 16
+			 */
+			else if (digit2.compareTo("51") >= 0 && digit2.compareTo("55") <= 0) {
+				if (number.length() == 16)
+					valid = MASTERCARD;
+			}
+			/*
+			 * ----* AMEX prefix=34 or 37* ---- length=15
+			 */
+			else if (digit2.equals("34") || digit2.equals("37")) {
+				if (number.length() == 15)
+					valid = AMERICAN_EXPRESS;
+			}
+			/*
+			 * -----* ENROU prefix=2014 or 2149* ----- length=15
+			 */
+			else if (digit4.equals("2014") || digit4.equals("2149")) {
+				if (number.length() == 15)
+					valid = EN_ROUTE;
+			}
+			/*
+			 * -----* DCLUB prefix=300 ... 305 or 36 or 38* ----- length=14
+			 */
+			else if (digit2.equals("36") || digit2.equals("38")
+					|| (digit3.compareTo("300") >= 0 && digit3.compareTo("305") <= 0)) {
+				if (number.length() == 14)
+					valid = DINERS_CLUB;
+			}
+		}
+		return valid;
+		/*
+		 * ----* DISCOVER card prefix = 60* -------- lenght = 16* left as an exercise
+		 * ...
+		 */
+	}
+
+	public static boolean isNumber(String n) {
+		try {
+			double d = Double.valueOf(n).doubleValue();
+			return true;
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	public static String getCardName(int id) {
+		return (id > -1 && id < cardNames.length ? cardNames[id] : "");
+	}
+
+	public static boolean validCCNumber(String n) {
+		try {
+			/*
+			 * * known as the LUHN Formula (mod10)
+			 */
+			int j = n.length();
+			String[] s1 = new String[j];
+			for (int i = 0; i < n.length(); i++)
+				s1[i] = "" + n.charAt(i);
+			int checksum = 0;
+			for (int i = s1.length - 1; i >= 0; i -= 2) {
+				int k = 0;
+				if (i > 0) {
+					k = Integer.valueOf(s1[i - 1]).intValue() * 2;
+					if (k > 9) {
+						String s = "" + k;
+						k = Integer.valueOf(s.substring(0, 1)).intValue() + Integer.valueOf(s.substring(1)).intValue();
+					}
+					checksum += Integer.valueOf(s1[i]).intValue() + k;
+				} else
+					checksum += Integer.valueOf(s1[0]).intValue();
+			}
+			return ((checksum % 10) == 0);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

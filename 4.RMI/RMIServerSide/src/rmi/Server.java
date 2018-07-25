@@ -9,7 +9,7 @@ public class Server {
 
 	public void Inicializa() throws RemoteException {
 		Registry r = LocateRegistry.createRegistry(iPorta);
-		r.rebind("teste", new Validador());
+		r.rebind("Validador", new Validador());
 		System.out.println("Server running...");
 	}
 

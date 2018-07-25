@@ -13,6 +13,9 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
 
 public class apPrincipal {
 
@@ -49,13 +52,13 @@ public class apPrincipal {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setTitle("ServidorRMI");
-		frame.setBounds(100, 100, 450, 177);
+		frame.setBounds(100, 100, 440, 197);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Configura\u00E7\u00F5es:", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(12, 12, 414, 83);
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(184, 207, 229)), "Endere\u00E7o do Servidor:", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(51, 51, 51)));
+		panel.setBounds(12, 12, 414, 100);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
@@ -72,8 +75,13 @@ public class apPrincipal {
 		JLabel lblobsOIp = new JLabel("(Obs.: o IP configurado é o IP desta máquina)");
 		lblobsOIp.setFont(new Font("Dialog", Font.PLAIN, 12));
 		lblobsOIp.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblobsOIp.setBounds(53, 47, 361, 24);
+		lblobsOIp.setBounds(22, 47, 361, 24);
 		panel.add(lblobsOIp);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon(apPrincipal.class.getResource("/resources/icons/globe-icon.png")));
+		label.setBounds(332, 12, 70, 70);
+		panel.add(label);
 		
 		JButton btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.addActionListener(new ActionListener() {
@@ -86,7 +94,7 @@ public class apPrincipal {
 				}
 			}
 		});
-		btnConfirmar.setBounds(170, 107, 117, 25);
+		btnConfirmar.setBounds(170, 124, 117, 25);
 		frame.getContentPane().add(btnConfirmar);
 	}
 }
