@@ -8,6 +8,7 @@ package tuplespacecreator;
 import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.ServerSocket;
+import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -175,9 +176,11 @@ public class TupleSpaceCreator extends javax.swing.JFrame {
         try {
             init(nomeServidor,portaServidor);
             this.setVisible(false);
-            RunningFrame oRunningFrame = new RunningFrame();
+            RunningFrame oRunningFrame = new RunningFrame(nomeServidor, portaServidor);
             oRunningFrame.setVisible(true);
         } catch (MzsCoreException ex) {
+            Logger.getLogger(TupleSpaceCreator.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnknownHostException ex) {
             Logger.getLogger(TupleSpaceCreator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnOkActionPerformed

@@ -1,5 +1,10 @@
 package tuplespacecreator;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,9 +19,17 @@ public class RunningFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form RunningFrame
+     * @param nome
+     * @param porta
      */
-    public RunningFrame() {
+    public RunningFrame(String nome, int porta) throws UnknownHostException {
         initComponents();
+        lblNome.setText(nome);
+        lblPorta.setText(String.valueOf(porta));
+        
+        InetAddress IP=InetAddress.getLocalHost();
+        
+        lblIP.setText(IP.getHostAddress());
     }
 
     /**
@@ -33,6 +46,12 @@ public class RunningFrame extends javax.swing.JFrame {
         btnEncerrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
+        lblPorta = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        lblIP = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -52,6 +71,18 @@ public class RunningFrame extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tuplespacecreator/running.png"))); // NOI18N
 
+        jLabel4.setText("Nome:");
+
+        jLabel5.setText("Porta:");
+
+        lblNome.setText("Nome do Espaco de Tuplas");
+
+        lblPorta.setText("Porta do Servico");
+
+        jLabel6.setText("IP:");
+
+        lblIP.setText("Endereco IP");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -59,14 +90,26 @@ public class RunningFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(btnEncerrar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                        .addComponent(jLabel3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                        .addComponent(jLabel3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblIP)
+                            .addComponent(lblNome)
+                            .addComponent(lblPorta, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(15, 15, 15))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(btnEncerrar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,7 +118,19 @@ public class RunningFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(lblNome))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(lblIP))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(lblPorta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnEncerrar)
                 .addContainerGap())
         );
@@ -94,7 +149,7 @@ public class RunningFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
@@ -107,7 +162,7 @@ public class RunningFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String nome, int porta) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -134,7 +189,11 @@ public class RunningFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RunningFrame().setVisible(true);
+                try {
+                    new RunningFrame(nome, porta).setVisible(true);
+                } catch (UnknownHostException ex) {
+                    Logger.getLogger(RunningFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -144,6 +203,12 @@ public class RunningFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblIP;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblPorta;
     // End of variables declaration//GEN-END:variables
 }
