@@ -35,11 +35,6 @@ public class apConexao {
 		this.frame.setVisible(true);
 	}
 
-	public apConexao() {
-		initialize();
-		this.frame.setVisible(true);
-	}
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
