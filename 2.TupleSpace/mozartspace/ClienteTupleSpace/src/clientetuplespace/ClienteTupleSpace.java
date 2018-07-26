@@ -21,6 +21,7 @@ import org.mozartspaces.core.Entry;
 import org.mozartspaces.core.MzsCore;
 import org.mozartspaces.core.MzsCoreException;
 
+
 /**
  * A simple "Hello, space!" example with the MozartSpaces core. First a core
  * instance with an embedded space is created and a container in that space,
@@ -31,16 +32,22 @@ public class ClienteTupleSpace {
     private MzsCore core;
     private Capi capi;
     private ContainerReference container;
+    static final int TIMEOUT = 86400000;
 
     public ClienteTupleSpace() throws MzsCoreException  {
-        init();
+        String nomeContainer = "TupleSpaceSD";
+        procurarContainer(nomeContainer);
     }
     
-    public void init() throws MzsCoreException {
-        System.out.println("Inicializando o Espaco");
-        this.core = DefaultMzsCore.newInstance();
+    public void procurarContainer(String nomeContainer) throws MzsCoreException {
+        int portaCliente = 9000;
+        
+        System.out.println("Tentado se conectar ao Espaco");
+        this.core = DefaultMzsCore.newInstance(portaCliente);
         this.capi = new Capi(core);
-        this.container = capi.createContainer(null, Arrays.asList(new LindaCoordinator(false)), null);
+        this.container = capi.lookupContainer(nomeContainer);
+        System.out.println("Conectado ao Espaco");
+        //this.container = capi.createContainer(null, Arrays.asList(new LindaCoordinator(false)), null);
     }
     
     public void write(int numeroAssento, char letraFileira) throws MzsCoreException {
@@ -54,7 +61,7 @@ public class ClienteTupleSpace {
         
         LindaCoordinator.LindaSelector newSelector = LindaCoordinator.newSelector(template);
         
-        resultadoPesquisa = capi.read(container, newSelector, 90, null);
+        resultadoPesquisa = capi.read(container, newSelector, TIMEOUT, null);
         return resultadoPesquisa;
     }
     
@@ -65,9 +72,7 @@ public class ClienteTupleSpace {
         
         LindaCoordinator.LindaSelector newSelector = LindaCoordinator.newSelector(template);
         
-        resultadoPesquisa = capi.take(container, newSelector, 90, null);
+        resultadoPesquisa = capi.take(container, newSelector, TIMEOUT, null);
         return resultadoPesquisa;
     }
-    
-
 }
