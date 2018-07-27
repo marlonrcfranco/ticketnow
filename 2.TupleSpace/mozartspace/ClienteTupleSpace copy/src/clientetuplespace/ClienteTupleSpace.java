@@ -6,12 +6,10 @@
 package clientetuplespace;
 
 import static clientetuplespace.ClienteTupleSpacesource.TIMEOUT;
-import java.io.IOException;
 import java.io.Serializable;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.mozartspaces.capi3.LindaCoordinator;
@@ -32,8 +30,8 @@ public class ClienteTupleSpace extends javax.swing.JFrame {
     private int portaServidor;
     private String ipServidor;
     private DefaultMzsCore core;
-    private static Capi capi;
-    private static ContainerReference container;
+    private Capi capi;
+    private ContainerReference container;
     private URI spaceURI;
     private String nomeContainer;
 
@@ -41,7 +39,6 @@ public class ClienteTupleSpace extends javax.swing.JFrame {
      * Creates new form ClienteTupleSpace
      */
     public ClienteTupleSpace() {
-        System.out.println("Construindo Cliente Tuple Space");
         initComponents();
     }
 
@@ -179,23 +176,21 @@ public class ClienteTupleSpace extends javax.swing.JFrame {
     private void conectarServidor() throws URISyntaxException, MzsCoreException {
         System.out.println("Se conectando ao servidor");
         this.core = DefaultMzsCore.newInstance(0);
-        ClienteTupleSpace.capi = new Capi(core);
+        this.capi = new Capi(core);
         this.spaceURI = new URI("xvsm://" + this.ipServidor + ":" + this.portaServidor);
         System.out.println("Se conectando em: [" + "xvsm://" + ipServidor + ":" + portaServidor + "]");
         System.out.println("Nome do servidor: " + this.nomeContainer);
         
-        ClienteTupleSpace.container = capi.lookupContainer(this.nomeContainer, this.spaceURI, RequestTimeout.TRY_ONCE, null);
+        this.container = capi.lookupContainer(this.nomeContainer, this.spaceURI, RequestTimeout.TRY_ONCE, null);
         
     }
     
-    public static void write(int numeroAssento, char letraFileira) throws MzsCoreException {
-        System.out.println("Recebendo: " + numeroAssento + letraFileira);
+    public void write(int numeroAssento, char letraFileira) throws MzsCoreException {
         Assento oAssento = new Assento(numeroAssento, letraFileira);
-        capi.write(ClienteTupleSpace.container, new Entry((Serializable) oAssento));
-        System.out.println("!!");
+        capi.write(container, new Entry((Serializable) oAssento));
     }
     
-    public static ArrayList<Assento> read(int numeroAssento, char letraFileira) throws MzsCoreException {
+    public ArrayList<Assento> read(int numeroAssento, char letraFileira) throws MzsCoreException {
         ArrayList<Assento> resultadoPesquisa;
         Assento template = new Assento(numeroAssento, letraFileira);
         
@@ -206,7 +201,7 @@ public class ClienteTupleSpace extends javax.swing.JFrame {
     }
     
 
-    public static ArrayList<Assento> take(int numeroAssento, char letraFileira) throws MzsCoreException {
+    public ArrayList<Assento> take(int numeroAssento, char letraFileira) throws MzsCoreException {
         ArrayList<Assento> resultadoPesquisa;
         Assento template = new Assento(numeroAssento, letraFileira);
         
@@ -218,7 +213,7 @@ public class ClienteTupleSpace extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) throws IOException, MzsCoreException {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -248,46 +243,6 @@ public class ClienteTupleSpace extends javax.swing.JFrame {
                 new ClienteTupleSpace().setVisible(true);
             }
         });
-        //ClienteTupleSpace.write(10,'A');
-        
-        Scanner sc=new Scanner(System.in);  
-        int  numeroAssento;
-        char letraFileira;
-        
-        while(true) {
-            System.out.println("[1] Escrever\n[2] Ler");
-            int opcao = sc.nextInt();
-            if( opcao == 1 ) {
-                System.out.println("[ESCRITA]\nDigite o Template");
-                
-                System.out.println("Numero do Assento: ");
-                numeroAssento = sc.nextInt();
-                
-                System.out.println("Letra da Fileira: ");
-                letraFileira = (char) System.in.read();
-                
-                ClienteTupleSpace.write(numeroAssento, letraFileira);
-                System.out.println("Tupla (" + numeroAssento + "," + letraFileira + ") adicionada");
-                
-            } 
-            else if ( opcao == 2 ) {
-                System.out.println("[LEITURA]\nDigite o assento");
-                
-                System.out.println("Numero do Assento: ");
-                numeroAssento = sc.nextInt();
-                
-                System.out.println("Letra da Fileira: ");
-                letraFileira = (char) System.in.read();
-                
-                ArrayList<Assento> resultadoPesquisa = ClienteTupleSpace.read(numeroAssento, letraFileira);
-                System.out.println("Tupla lida: " + resultadoPesquisa.get(0));
-
-            } 
-            else {
-               break;
-            }
-        }
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
