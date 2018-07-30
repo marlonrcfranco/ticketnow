@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -143,13 +144,14 @@ public class TupleSpaceCreator extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(64, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(103, 103, 103))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,9 +180,7 @@ public class TupleSpaceCreator extends javax.swing.JFrame {
             this.setVisible(false);
             RunningFrame oRunningFrame = new RunningFrame(nomeServidor, portaServidor);
             oRunningFrame.setVisible(true);
-        } catch (MzsCoreException ex) {
-            Logger.getLogger(TupleSpaceCreator.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnknownHostException ex) {
+        } catch (MzsCoreException | UnknownHostException ex) {
             Logger.getLogger(TupleSpaceCreator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnOkActionPerformed
@@ -222,11 +222,21 @@ public class TupleSpaceCreator extends javax.swing.JFrame {
         }
         return false;
     }
+<<<<<<< HEAD
     private static void init(String nomeContainer, int serverPort) throws MzsCoreException {
         System.out.println("Inicializando o Espaço");
         TupleSpaceCreator.core = DefaultMzsCore.newInstance(serverPort);
         TupleSpaceCreator.capi = new Capi(core);
         TupleSpaceCreator.container = capi.createContainer(nomeContainer, null, UNBOUNDED, null, new LindaCoordinator(false));
+=======
+    
+    private static void init(String nomeContainer, Integer serverPort) throws MzsCoreException {
+ 
+        DefaultMzsCore core = DefaultMzsCore.newInstance(serverPort);
+        Capi capi = new Capi(core);
+        
+        ContainerReference cref = capi.createContainer(nomeContainer, null, UNBOUNDED, null, new LindaCoordinator(false) );
+>>>>>>> tuple-space
     }
     
     /**
@@ -262,8 +272,7 @@ public class TupleSpaceCreator extends javax.swing.JFrame {
                 new TupleSpaceCreator().setVisible(true);
             }
         });
-        
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

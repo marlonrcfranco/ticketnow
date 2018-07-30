@@ -1,32 +1,46 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * MozartSpaces - Java implementation of Extensible Virtual Shared Memory
+ * Copyright 2010 Space Based Computing Group. All rights reserved.
+ * Use is subject to license terms.
  */
 package clientetuplespace;
 
+<<<<<<< HEAD
 import static clientetuplespace.ClienteTupleSpacesource.TIMEOUT;
 import java.io.IOException;
+=======
+>>>>>>> tuple-space
 import java.io.Serializable;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+=======
+import java.util.Arrays;
+import java.util.List;
+
+>>>>>>> tuple-space
 import org.mozartspaces.capi3.LindaCoordinator;
+import org.mozartspaces.capi3.LindaCoordinator.LindaSelector;
+import org.mozartspaces.capi3.Queryable;
 import org.mozartspaces.core.Capi;
 import org.mozartspaces.core.ContainerReference;
 import org.mozartspaces.core.DefaultMzsCore;
 import org.mozartspaces.core.Entry;
-import org.mozartspaces.core.MzsConstants;
+import static org.mozartspaces.core.MzsConstants.Container.UNBOUNDED;
 import org.mozartspaces.core.MzsConstants.RequestTimeout;
+import org.mozartspaces.core.MzsConstants.Selecting;
+import org.mozartspaces.core.MzsCore;
 import org.mozartspaces.core.MzsCoreException;
 
 /**
+ * Linda matching example.
  *
- * @author viniciuslucena
+ * @author Tobias Doenz
  */
+<<<<<<< HEAD
 public class ClienteTupleSpace extends javax.swing.JFrame {
 
     private int portaServidor;
@@ -185,9 +199,53 @@ public class ClienteTupleSpace extends javax.swing.JFrame {
         System.out.println("Nome do servidor: " + this.nomeContainer);
         
         ClienteTupleSpace.container = capi.lookupContainer(this.nomeContainer, this.spaceURI, RequestTimeout.TRY_ONCE, null);
+=======
+public class ClienteTupleSpace {
+    
+    private static URI SPACE;
+    private static MzsCore core;
+    private static Capi capi;
+    private static ContainerReference cref;
+    
+    private static String nomeContainer = "admin";
+    private static String ipServidor = "localhost";
+    private static int portaServidor = 9000;
+
+    public ClienteTupleSpace(String nomeContainer, String ipServidor, int portaServidor) throws MzsCoreException { 
+        ClienteTupleSpace.nomeContainer = nomeContainer;
+        ClienteTupleSpace.ipServidor = ipServidor;
+        ClienteTupleSpace.portaServidor = portaServidor;
         
+        procurarServidor();
     }
     
+    public void setNomeContainer(String nomeContainer) {
+        ClienteTupleSpace.nomeContainer = nomeContainer;
+    }
+    
+    public void setIpServidor(String ipServidor) {
+        ClienteTupleSpace.ipServidor = ipServidor;
+    }
+        
+    public void setPortaServidor(Integer portaServidor) {
+        ClienteTupleSpace.portaServidor = portaServidor;
+    }
+    
+    
+    public static void encerrar () throws MzsCoreException {
+        capi.shutdown(null);
+    }
+    
+    public static void procurarServidor() throws MzsCoreException {
+        SPACE = URI.create("xvsm://" + ipServidor + ":" + portaServidor);
+        core = DefaultMzsCore.newInstance(0);
+        capi = new Capi(core);
+>>>>>>> tuple-space
+        
+        cref = capi.lookupContainer(nomeContainer, SPACE, RequestTimeout.ZERO, null);
+    }
+    
+<<<<<<< HEAD
     public static void write(int numeroAssento, char letraFileira) throws MzsCoreException {
         System.out.println("Recebendo: " + numeroAssento + letraFileira);
         Assento oAssento = new Assento(numeroAssento, letraFileira);
@@ -196,25 +254,62 @@ public class ClienteTupleSpace extends javax.swing.JFrame {
     }
     
     public static ArrayList<Assento> read(int numeroAssento, char letraFileira) throws MzsCoreException {
+=======
+    public void write(Integer numeroAssento, String letraFileira) throws MzsCoreException {
+        System.out.println("\n\n!!!! Escrevendo: (" + numeroAssento + "," + letraFileira + ")\n\n");
+        
+        Assento oAssento = new Assento(numeroAssento, letraFileira);
+        capi.write(cref, new Entry((Serializable) oAssento));
+    }
+    
+    public ArrayList<Assento> read(Integer numeroAssento, String letraFileira) throws MzsCoreException {
+        System.out.println("\n\n!!!! Lendo: (" + numeroAssento + "," + letraFileira + ")\n\n");
+        
+>>>>>>> tuple-space
         ArrayList<Assento> resultadoPesquisa;
         Assento template = new Assento(numeroAssento, letraFileira);
         
-        LindaCoordinator.LindaSelector newSelector = LindaCoordinator.newSelector(template);
+        LindaCoordinator.LindaSelector newSelector = LindaCoordinator.newSelector(template, 1);
         
-        resultadoPesquisa = capi.read(container, newSelector, TIMEOUT, null);
+        resultadoPesquisa = capi.read(cref, newSelector, 0, null);
+        
+        System.out.println("Resultado da pesquisa: " + resultadoPesquisa);
+        
         return resultadoPesquisa;
     }
     
+<<<<<<< HEAD
 
     public static ArrayList<Assento> take(int numeroAssento, char letraFileira) throws MzsCoreException {
+=======
+    public ArrayList<Assento> readAll(Integer numeroAssento, String letraFileira) throws MzsCoreException {
+        System.out.println("\n\n!!!! Lendo: (" + numeroAssento + "," + letraFileira + ")\n\n");
+        
+        ArrayList<Assento> resultadoPesquisa;
+        Assento template = new Assento(numeroAssento, letraFileira);
+        
+        LindaCoordinator.LindaSelector newSelector = LindaCoordinator.newSelector(template, Selecting.COUNT_ALL);
+        
+        resultadoPesquisa = capi.read(cref, newSelector, 0, null);
+        
+        System.out.println("Resultado da pesquisa: " + resultadoPesquisa);
+        
+        return resultadoPesquisa;
+    }
+    
+    public ArrayList<Assento> take(Integer numeroAssento, String letraFileira) throws MzsCoreException {
+        System.out.println("Taking");
+        
+>>>>>>> tuple-space
         ArrayList<Assento> resultadoPesquisa;
         Assento template = new Assento(numeroAssento, letraFileira);
         
         LindaCoordinator.LindaSelector newSelector = LindaCoordinator.newSelector(template);
         
-        resultadoPesquisa = capi.take(container, newSelector, TIMEOUT, null);
+        resultadoPesquisa = capi.take(cref, newSelector, 0, null);
         return resultadoPesquisa;
     }
+<<<<<<< HEAD
     /**
      * @param args the command line arguments
      */
@@ -239,9 +334,31 @@ public class ClienteTupleSpace extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ClienteTupleSpace.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ClienteTupleSpace.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+=======
+    
+    public ArrayList<Assento> takeAll(Integer numeroAssento, String letraFileira) throws MzsCoreException {
+        ArrayList<Assento> resultadoPesquisa;
+        Assento template = new Assento(numeroAssento, letraFileira);
+        
+        LindaCoordinator.LindaSelector newSelector = LindaCoordinator.newSelector(template, Selecting.COUNT_ALL);
+        
+        resultadoPesquisa = capi.take(cref, newSelector, 0, null);
+        return resultadoPesquisa;
+    }
 
+    private static class Assento implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        private final Integer numeroAssento;
+        private final String letraFileira;
+
+        Assento(final Integer numeroAssento, final String letraFileira) {
+            this.numeroAssento = numeroAssento;
+            this.letraFileira = letraFileira;
+>>>>>>> tuple-space
+        }
+
+<<<<<<< HEAD
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -288,16 +405,13 @@ public class ClienteTupleSpace extends javax.swing.JFrame {
             }
         }
         
+=======
+        @Override
+        public String toString() {
+            return "Assento: (" + numeroAssento + "," + letraFileira + ")\n\n";
+        }
+    
+>>>>>>> tuple-space
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConectar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtIPServidor;
-    private javax.swing.JTextField txtNomeContainer;
-    private javax.swing.JTextField txtPortaServidor;
-    // End of variables declaration//GEN-END:variables
 }
