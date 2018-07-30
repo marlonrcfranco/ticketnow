@@ -5,13 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-import javax.jms.JMSException;
-import javax.jms.MessageConsumer;
-import javax.jms.Topic;
-import javax.jms.TopicSession;
-
-import org.springframework.jms.annotation.JmsListener;
-import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.jms.core.JmsTemplate;
 
 /**
@@ -21,16 +14,14 @@ import org.springframework.jms.core.JmsTemplate;
 public class ClientMQ {
 
 	private String sEndServidor;
+	private ConfigMQ cfg;
 	private JmsTemplate jmsTemplate;
 
 	public ClientMQ() throws IOException {
 		CarregaConfiguracoes("MQconfig.txt");
-		ConfigMQ cfg = new ConfigMQ("tcp://" + sEndServidor);
-		jmsTemplate = cfg.jmsTemplate();
 	}
 
-	private boolean CarregaConfiguracoes(String pathMQconfigtxt) throws IOException {
-		// Busca dados do arquivo MQconfig.txt
+	public boolean CarregaConfiguracoes(String pathMQconfigtxt) throws IOException {
 		File file = new File(pathMQconfigtxt);
 		BufferedReader reader = null;
 		String text = null;
@@ -41,6 +32,8 @@ public class ClientMQ {
 			return false;
 		}
 		sEndServidor = text;
+		cfg = new ConfigMQ("tcp://" + sEndServidor);
+		jmsTemplate = cfg.jmsTemplate();
 		return true;
 	}
 
@@ -58,26 +51,37 @@ public class ClientMQ {
 	 * @param DigitoVerificador
 	 *            Digito verificador atrás do cartão - 3 numeros não negativos (ex:
 	 *            999)
-	 * @return true|false Retorna false se a insercao foi realizada com sucesso,
-	 *         retorna true caso ocorra algum erro
+	 * @return true|false Retorna true se a insercao foi realizada com sucesso,
+	 *         retorna false caso ocorra algum erro
 	 */
-	public boolean InserirPedido(String Cadeira, String CodCartao, String DataValidade, String DigitoVerificador) {
+	public boolean InserirPedidoNaFilaPedidos(String Cadeira, String CodCartao, String DataValidade,
+			String DigitoVerificador) {
 		String mensagem = Cadeira + ":" + CodCartao + ":" + DataValidade + ":" + DigitoVerificador;
-		if (publish("pendentes", mensagem).equalsIgnoreCase("Mensagem publicada com sucesso!")) {
-			return false;
+		if (publish("pedidos", mensagem)) {
+			return true;
 		}
+		return false;
+	}
+
+	public boolean publish(String fila, String message) {
+		jmsTemplate.convertAndSend(fila, message);
+		System.out.println("Mensagem '" + message + "' publicada com sucesso na fila '" + fila + "'.");
 		return true;
 	}
 
-	private String publish(String fila, String message) {
-		jmsTemplate.convertAndSend(fila, message);
-		return "Mensagem publicada com sucesso!";
+	public String consume(String fila) {
+		String message = jmsTemplate.receiveAndConvert(fila).toString();
+		System.out.println("Mensagem recebida da fila '" + fila + "': " + message);
+		return message;
 	}
 
-	private String consume(String fila) {
-		String message = "";
-
-		return message;
+	public String PegarDaFilaConcluidos() {
+		String resposta = consume("concluidos");
+		if (resposta.endsWith("VALIDO")) {
+			return "Cartão VÁLIDO!";
+		} else {
+			return "Cartão INVÁLIDO!";
+		}
 	}
 
 	public String getEndServidor() {
