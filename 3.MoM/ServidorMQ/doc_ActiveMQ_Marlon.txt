@@ -1,0 +1,17 @@
+******* Iniciar Broker ActiveMQ:
+ cd /ServidorMQ/apache-activemq-5.15.4/bin/
+ ./activemq start
+ 
+******* Encerrar o Broker:
+ cd /ServidorMQ/apache-activemq-5.15.4/bin/
+ ./activemq stop
+ 
+******* Configuracao Padrao (quando for utilizar nos codigos Java):
+ tcp://localhost:61616
+ 
+******* Para visualizar o Broker pelo navegador:
+ http://localhost:8161
+ 
+ login: admin
+ senha: admin
+
