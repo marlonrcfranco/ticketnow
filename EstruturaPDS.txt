@@ -1,0 +1,19 @@
+Tabelas em XML:
+- Filmes (Codigo, Titulo, Descrição, Gênero, Nota(de 0 a 5), Diretor, Atores)
+- Subscribers (Codigo, Nome Completo, Email) Tratar na camada de persistencia se o mesmo 
+- Filmes_Subscribers (Codigo, Filmes_Codigo, Subscribers_Codigo)
+
+
+Padrões:
+<< CRIACIONAIS
+- Factory - Criar Filmes (addFilmes)
+- Singleton - Ta implementado no próprio Factory
+
+<< ESTRUTURAIS
+- Adapter - Implementado no ClienteTS
+
+<< COMPORTAMENTAIS
+- Observer - Se inscrever nos filmes
+- Template (?)
+
+
