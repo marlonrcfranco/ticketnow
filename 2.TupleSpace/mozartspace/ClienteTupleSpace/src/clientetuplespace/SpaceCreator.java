@@ -25,8 +25,8 @@ public class SpaceCreator {
     
     
     public static void init() throws MzsCoreException {
-        int serverPort = 9002;
-        String nomeContainer = "aline";
+        int serverPort = 18000;
+        String nomeContainer = "admin";
         
         DefaultMzsCore core = DefaultMzsCore.newInstance(serverPort);
         Capi capi = new Capi(core);

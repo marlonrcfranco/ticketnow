@@ -175,6 +175,7 @@ public class TupleSpaceCreator extends javax.swing.JFrame {
             oErroPorta.setVisible(true);
             this.setVisible(false);
         }
+        
         try {
             init(nomeServidor,portaServidor);
             this.setVisible(false);

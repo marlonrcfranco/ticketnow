@@ -14,11 +14,8 @@ import org.mozartspaces.core.MzsCoreException;
 public class WSFake {
     
     public static void main(String [] args) throws MzsCoreException {
-        ClienteTupleSpace clienteTS = new ClienteTupleSpace();
-        clienteTS.procurarServidor();
-        clienteTS.setNomeContainer("martins");
-        
-        /*
+        ClienteTupleSpace clienteTS = new ClienteTupleSpace("admin", "localhost", 18009);
+
         clienteTS.write(10, "A");
         clienteTS.write(10, "B");
         clienteTS.write(10, "C");
@@ -32,8 +29,7 @@ public class WSFake {
         clienteTS.readAll(20, null);
         clienteTS.readAll(null, "A");
 
-        */
-        
+ 
         ClienteTupleSpace.encerrar();
         
     }
