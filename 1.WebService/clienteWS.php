@@ -15,20 +15,26 @@
     */
 
     $numeroAssento = 10;
-    $letraFileira = "A";
+    $letraFileira = "B";
     $codCartao = "7000000000000000";
     $dataVencimento = "2720";
     $digitoVerificador = "130";
 
+
+
+    carregarConfiguracoesWebService();
+
     comprarAssento($numeroAssento, $letraFileira, $codCartao, $dataVencimento, $digitoVerificador);
 
 
-
+    function carregarConfiguracoesWebService() {
+        $GLOBALS["portaServidor"] = 56000;
+        $GLOBALS["ipServidor"] = "localhost";
+    }
 
     function comprarAssento($numeroAssento, $letraFileira, $codCartao, $dataVencimento, $digitoVerificador) {
         echo "Comprando assento";
-
-        $clienteWS = new SoapClient("http://127.0.0.1:9876/ticketnow?wsdl");
+        $clienteWS = new SoapClient("http://".$GLOBALS["ipServidor"].":".$GLOBALS["portaServidor"]."/ticketnowws?wsdl");
 
         $param = array();
         $param["numeroAssento"] = $numeroAssento;
@@ -37,9 +43,7 @@
         $param["dataVencimento"] = $dataVencimento;
         $param["digitoVerificador"] = $digitoVerificador;
 
-        //$clienteWS->comprarIngresso($param);
-        //echo $clienteWS->hello("Vinicius");
-        $aux = ticketnow.comprar(1, 'A');
+        $aux = $clienteWS->comprarIngresso($numeroAssento, $letraFileira, $codCartao, $dataVencimento, $digitoVerificador);
         echo $aux;
     }
 
