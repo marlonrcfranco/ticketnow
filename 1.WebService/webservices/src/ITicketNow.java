@@ -12,6 +12,6 @@ import javax.jws.soap.SOAPBinding.Style;
 @WebService
 @SOAPBinding(style = Style.RPC)
 public interface ITicketNow {
-  @WebMethod int consultar(int numero_fileira, char letra_corredor);
-  @WebMethod int comprar(int numero_fileira, char letra_corredor);
+  @WebMethod String consultarIngresso(Integer numeroAssento, String letraFileira);
+  @WebMethod String comprarIngresso(Integer numeroAssento, String letraFileira, String codCartao, String dataVencimento, String digitoVerificador);
 }

@@ -223,21 +223,13 @@ public class TupleSpaceCreator extends javax.swing.JFrame {
         }
         return false;
     }
-<<<<<<< HEAD
+
     private static void init(String nomeContainer, int serverPort) throws MzsCoreException {
         System.out.println("Inicializando o Espaço");
         TupleSpaceCreator.core = DefaultMzsCore.newInstance(serverPort);
         TupleSpaceCreator.capi = new Capi(core);
         TupleSpaceCreator.container = capi.createContainer(nomeContainer, null, UNBOUNDED, null, new LindaCoordinator(false));
-=======
-    
-    private static void init(String nomeContainer, Integer serverPort) throws MzsCoreException {
- 
-        DefaultMzsCore core = DefaultMzsCore.newInstance(serverPort);
-        Capi capi = new Capi(core);
-        
-        ContainerReference cref = capi.createContainer(nomeContainer, null, UNBOUNDED, null, new LindaCoordinator(false) );
->>>>>>> tuple-space
+
     }
     
     /**

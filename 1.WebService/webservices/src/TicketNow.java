@@ -5,12 +5,13 @@ import javax.jws.WebService;
  
 @WebService(endpointInterface = "webservice.ITicketNow")
 public class TicketNow implements ITicketNow {
-  public int consultar(int numero_fileira, char letra_corredor) {
-    return 1;
+  public String consultarAssento(Integer numeroAssento, String letraFileira) {
+    return "Consultando Ingresso: (" + numeroAssento + "," + letraFileira + ")";
   }
 
-  public int comprar(int numero_fileira, char letra_corredor) {
-    return 2;
+  public String comprarAssento(Integer numeroAssento, String letraFileira, String codCartao, String dataVencimento, String digitoVerificador) {
+    return "Comprando Ingresso: (" + numeroAssento + "," + letraFileira + ")";
+
   }
  
 }
