@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<filme>
+		<codigo>F0000</codigo>
+		<titulo>Template, o Filme</titulo>
+		<descricao>Este é o primeiro registro, serve como Template para os demais [é gerado automaticamente ao criar uma nova tabela]</descricao>
+		<genero>Aventura</genero>
+		<ano>2007</ano>
+		<avaliacao>(sem avaliação)</avaliacao>
+		<diretor>(sem informações de diretor)</diretor>
+		<elenco>(sem informações de elenco)</elenco>
+		<reg_date>1993-05-31 23:59:59</reg_date>
+  </filme>
+</root>

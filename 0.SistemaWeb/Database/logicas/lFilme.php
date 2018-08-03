@@ -63,7 +63,7 @@ class lFilme {
 		$this->reg_date = null;
 		$this->semEspaco = false;
 		// $this->tablePathFilme = $_SERVER['DOCUMENT_ROOT']."/Database/db/tFilme.xml";
-		$this->tablePathFilme = "../db/tFilme.xml";
+		$this->tablePathFilme = "./db/tFilme.xml";
     }
 	
 
@@ -175,7 +175,7 @@ XML;
 	 * 
 	 */
 	public function validaFormatoAvaliacao(string $avaliacao) {
-		if (($avaliacao.floatval < 0.0) || ($avaliacao.floatval > 5.0)) {
+		if ((floatval($avaliacao) < 0.0) || (floatval($avaliacao) > 5.0)) {
 			return true; // ERRO: Formato da avaliação inválido.
 		}
 		return false; // Sucesso
@@ -267,6 +267,12 @@ XML;
 		}
 		$generoElement = $domXML->createElement("genero", $genero);
 		$Filme->appendChild($generoElement);
+		// ******* Inserção do Ano *******
+		if($ano == null) {
+			return "ERRO: Campo 'Ano' é obrigatório.";
+		}
+		$anoElement = $domXML->createElement("ano", $ano);
+		$Filme->appendChild($anoElement);
 		// ******* Inserção da Avaliacao *******
 		if($avaliacao == null) {
 			$avaliacao = "(sem avaliação)"; // Avaliacao default
@@ -283,7 +289,7 @@ XML;
 		$diretorElement = $domXML->createElement("diretor", $diretor);
 		$Filme->appendChild($diretorElement);
 		// ******* Inserção do Elenco *******
-		if($telefone == null) {
+		if($elenco == null) {
 			$elenco = "(sem informações de elenco)";
 		}
 		$elencoElement = $domXML->createElement("elenco", $elenco);
@@ -309,8 +315,8 @@ XML;
 	 * @param string $descricao       [Opcional] Descricao do filme
 	 * @param string $genero          [Opcional] Genero do filme (ex.: acao, suspense, romance)
 	 * @param string $ano             [Opcional] Ano de lançamento do filme (ex.: 2007)
-	 * @param float $avaliacaoMinima  [Opcional] Rating do filme mínino, numa escala de 0.0 a 5.0
-	 * @param float $avaliacaoMaxima  [Opcional] Rating do filme máximo, numa escala de 0.0 a 5.0
+	 * @param string $avaliacaoMinima [Opcional] Rating do filme mínino, numa escala de 0.0 a 5.0
+	 * @param string $avaliacaoMaxima [Opcional] Rating do filme máximo, numa escala de 0.0 a 5.0
 	 * @param string $diretor         [Opcional] Diretor do filme
 	 * @param string $elenco          [Opcional] Elenco do filme, apenas os atores principais
 	 * @param string $reg_date        [Opcional] Data e Hora de registro do filme do sistema
@@ -318,7 +324,7 @@ XML;
 	 * @return SimpleXMLElement[] $xml	Retorna um array de SimpleXMLObject contendo o resultado da consulta.
 	 * 
 	 */
-	public function selectFilme(string $codigo = null, string $titulo = null, string $descricao = null, string $genero = null, string $ano = null, float $avaliacaoMinima=null, float $avaliacaoMaxima=null, string $diretor=null, string $elenco=null, string $reg_date = null) {
+	public function selectFilme(string $codigo = null, string $titulo = null, string $descricao = null, string $genero = null, string $ano = null, string $avaliacaoMinima = null, string $avaliacaoMaxima = null, string $diretor=null, string $elenco=null, string $reg_date = null) {
 		$tablePath = $this->tablePathFilme;
 		$xml=simplexml_load_file($tablePath) or die("Error: Cannot create object");
 		$maisDeUmParametro = false;
@@ -364,7 +370,7 @@ XML;
 		if (($avaliacaoMinima != null) && ($avaliacaoMaxima != null)) {
 			if ($maisDeUmParametro) $xPathQuery = $xPathQuery." and ";
 			// $xPathQuery = $xPathQuery."avaliacao/text()='".$avaliacao."'";
-			$xPathQuery = $xPathQuery."avaliacao>".$avaliacaoMinima." and avaliacao<".$avaliacaoMaxima;
+			$xPathQuery = $xPathQuery."avaliacao>=".$avaliacaoMinima." and avaliacao<=".$avaliacaoMaxima."";
 			$maisDeUmParametro = true;
 		}
 		if ($diretor != null) {
@@ -646,7 +652,7 @@ XML;
 	/**
 	 * getFilmeByAvaliacao
 	 *
-	 * Busca os Filmes que possuem avaliacao entre os valores informados e retorna um array com objetos da classe lFilme.
+	 * Busca os Filmes que possuem avaliacao entre as avaliações máxima e mínima informadas e retorna um array com objetos da classe lFilme.
 	 * 
 	 * @param float $avaliacaoMinima         Avaliação mínima desejada
 	 * @param float $avaliacaoMaxima         Avaliação máxima desejada
@@ -670,7 +676,7 @@ XML;
 	 * 
 	 */
 	public function getFilmeByDiretor($diretor) {
-		$ListSimpleXMLObject = $this->selectFilme(null, null, null, null, null, null, null, $diretor);
+		$ListSimpleXMLObject = $this->selectFilme(null, null, null, null, null, null,null, $diretor);
 		$ListaFilmes = $this->traduzSimpleXMLObjectToFilme($ListSimpleXMLObject);
 		return $ListaFilmes;
 	}
@@ -722,6 +728,7 @@ XML;
 									$oFilme->descricao,
 									$oFilme->genero,
 									$oFilme->ano,
+									$oFilme->avaliacao,
 									$oFilme->avaliacao,
 									$oFilme->diretor,
 									$oFilme->elenco
