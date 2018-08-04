@@ -14,6 +14,6 @@ Padrões:
 
 << COMPORTAMENTAIS
 - Observer - Se inscrever nos filmes
-- Template (?)
+- Facade - Toda interface simplificada em vários códigos do nosso trabalho conta como Facade?
 
 
