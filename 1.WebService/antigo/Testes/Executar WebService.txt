@@ -1,0 +1,7 @@
+PASSO A PASSO para executar o Servico Web pelo Terminal
+
+COMPILAR TODOS OS ARQUIVOS:
+javac -cp .:ClienteTupleSpace.jar:ClientMQ.jar:ClientRMI.jar:mozartspaces.jar *.java
+
+EXECUTAR PUBLISHER:
+java -cp .:ClienteTupleSpace.jar:ClientMQ.jar:ClientRMI.jar:mozartspaces.jar ticketnow.TicketNowPublisher

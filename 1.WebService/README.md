@@ -12,8 +12,12 @@ A seguir, listaremos os principais componentes da arquitetura de um serviço WEB
 ![Arquitetura do Web Service](modelagem_WebService.png)
 
 ## PASSO-A-PASSO para executar
-1) Abra o Terminal na pasta TicketNowWS/dist/
-2) Digite: _java -cp TicketNowWS.jar ticketnowws.TicketNowPublisher_ no terminal para executar o Servidor Web.
+1) Abra o Terminal na pasta TicketNowWS/
+2) Digite no terminal para executar o Servidor Web.
+```
+java -cp TicketNowWS.jar ticketnowws.TicketNowPublisher
+```
+
 
 * O Serviço Web é configurado através do arquivo _config_WebService.txt_.
 * O cliente do Espaço de Tuplas é configurado através do arquivo _config_TupleSpace.txt_.
