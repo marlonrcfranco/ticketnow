@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ..:: Logica para manipulacao da tabela de Filmes ::..
+ * ..:: Logica para manipulacao da tabela de tFilme.xml ::..
  * 
  * @author Marlon R C Franco
  * @author Marlon R C Franco <marlonrcfranco@gmail.com>
@@ -63,7 +63,7 @@ class lFilme {
 		$this->reg_date = null;
 		$this->semEspaco = false;
 		// $this->tablePathFilme = $_SERVER['DOCUMENT_ROOT']."/Database/db/tFilme.xml";
-		$this->tablePathFilme = "./db/tFilme.xml";
+		$this->tablePathFilme = "0.SistemaWeb/Database/db/tFilme.xml";
     }
 	
 
