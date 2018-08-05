@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ..:: Logica para manipulacao da tabela de tSubscriber.xml ::..
+ * ..:: Logica para manipulacao da tabela tSubscriber.xml ::..
  * 
  * @author Marlon R C Franco
  * @author Marlon R C Franco <marlonrcfranco@gmail.com>
@@ -175,7 +175,24 @@ XML;
 	 * 
 	 */
 	public function verificaCPFSubscriber(string $cpf) {
-		if ($this->getSubscriberByEmail($cpf) == null) {
+		if ($this->getSubscriberByCPF($cpf) == null) {
+			return false; // Sucesso
+		}
+		return true; // ERRO: Subscriber já cadastrado.
+	}
+
+
+	/**	
+	 * verificaEmailSubscriber
+	 *
+	 * Verifica se o Email informado já está presente na tabela tSubscriber.xml
+	 * 
+	 * @param string $email     Email do Subscriber a ser verificado.
+	 * @return false|true       'false' se Sucesso | 'true' se ERRO: Subscriber já cadastrado.
+	 * 
+	 */
+	public function verificaEmailSubscriber(string $email) {
+		if ($this->getSubscriberByEmail($email) == null) {
 			return false; // Sucesso
 		}
 		return true; // ERRO: Subscriber já cadastrado.
@@ -247,6 +264,9 @@ XML;
 		// ******* Inserção da Email *******
 		if($email == null) {
 			return "ERRO: Campo 'Email' é obrigatório.";
+		}
+		if($this->verificaEmailSubscriber($email)){
+			return "ERRO: Este Email já está cadastrado.";
 		}
 		$emailElement = $domXML->createElement("email", $email);
 		$Subscriber->appendChild($emailElement);
@@ -437,6 +457,9 @@ XML;
 			$houveAlteracao = true;
 		}
 		if(($Subscriber->email != $email) and ($email != null)) {
+			if($this->verificaEmailSubscriber($email)){
+				return "ERRO: Este Email já está cadastrado para outro Subscriber.";
+			}
 			$Subscriber->email = $email;
 			$houveAlteracao = true;
 		}

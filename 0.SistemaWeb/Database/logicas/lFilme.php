@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ..:: Logica para manipulacao da tabela de tFilme.xml ::..
+ * ..:: Logica para manipulacao da tabela tFilme.xml ::..
  * 
  * @author Marlon R C Franco
  * @author Marlon R C Franco <marlonrcfranco@gmail.com>
