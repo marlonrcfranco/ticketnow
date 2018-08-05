@@ -244,7 +244,7 @@ ul ,li{list-style:none;}
 }
 .base-home .base-formulario .btn.limpar{
 	background:#C7C7D3;
-	color:#484860;
+	color:red;
 }
 .base-home .base-formulario .btn.limpar:hover{
 	background:#ACACBD;
@@ -259,12 +259,13 @@ ul ,li{list-style:none;}
 	-moz-border-radius:3px;
 	-o-border-radius:3px;
 	text-transform:uppercase;
-	color:#fff;
-	background:#484860;
+	text-align: center;
+	background:rgb(161, 160, 160);
 	font-size:.9em;
+	width: 50%;
 }
 .btn:hover{
-	background:#68688A;
+	background:rgb(249, 249, 252);
 	cursor:pointer;
 }
 

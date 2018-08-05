@@ -63,7 +63,7 @@ class lFilme {
 		$this->reg_date = null;
 		$this->semEspaco = false;
 		// $this->tablePathFilme = $_SERVER['DOCUMENT_ROOT']."/Database/db/tFilme.xml";
-		$this->tablePathFilme = "./db/tFilme.xml";
+		$this->tablePathFilme = "../db/tFilme.xml";
     }
 	
 

@@ -9,28 +9,36 @@
 
 <body>
 <div class="conteudo">	
+    <?php include "cabecalho.php"?>
+   
 	<div class="base-central">
 
-      
-			
-		<?php include "cabecalho.php"?>
-        
-        <div class="capa-filme">
-        
-            <img src="../img/filme_titanic.jpg">
-        </div>
-        
-        
-        
-        <form action="../scripts/teste.php" method="post">
-        
-            <button>Comprar Ingresso</button>
-        </form>
 		
-        <?php include "rodape.php"?>
+        
+        
+        <div class="coluna-esquerda">
+            <div class"capa-filme">
+                <img src="../img/filme_titanic.jpg">
+            </div>
+        </div>
 
-	
+        <div class="coluna-direita">
+            <h3>Titanic: O Retorno de Jack</h3>
+
+            <form action="../scripts/consultarTodosIngressos.php" method="POST">
+                    <label>Nome</label>
+                    <input type="submit" name="btnConsultarTodosIngressos" id="button" value="Consultar Ingressos" class="btn">
+            </form>
+        </div>
+
+        
+
+		
+        
+
+	    <?php include "rodape.php"?>
     </div>		
+    
 </div>		
 </body>
 </html>

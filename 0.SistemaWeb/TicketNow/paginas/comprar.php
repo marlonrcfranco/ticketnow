@@ -15,6 +15,7 @@
         <div class="base-home">
             
 		<h1 class="titulo"><span class="cor">Novo</span> cadastro</h1>
+            Voce esta comprando o Filme: <?php echo $_GET["filme"];?>
             <div class="base-formulario">	
                 <form action="#" method="POST">
                     <label>Nome</label>

@@ -292,8 +292,8 @@ function testeDescobrirCodigoDoFilme(){
 function main(){
 
     // testeAtributos();
-    testeCriacao();
-    // testeInsercaoPorParametro();
+    // testeCriacao();
+        testeInsercaoPorParametro();
     // testeInsercaoPorAtributo();
     // testeUpdatePorParametro();
     // testeUpdatePorAtributo();
