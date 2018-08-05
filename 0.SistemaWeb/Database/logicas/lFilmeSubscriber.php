@@ -15,6 +15,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
 include_once 'lFilme.php';
 include_once 'lSubscriber.php';
+include_once 'ILogica.php';
 
 /**
  * Classe de lógica para manipulação da tabela tFilmeSubscriber.xml
@@ -27,7 +28,7 @@ include_once 'lSubscriber.php';
  * @var string $tablePathFilmeSubscriber  File path da tabela tFilmeSubscriber.xml
  * 
  */
-class lFilmeSubscriber {
+class lFilmeSubscriber implements ILogica{
 	public $codigo;
 	public $titulo;
 	public $email;

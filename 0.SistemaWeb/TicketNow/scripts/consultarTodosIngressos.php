@@ -3,7 +3,8 @@
 
     $clienteWS = new ClienteWS();
 
-    $assentosDisponiveis = $clienteWS->consultarTodosAssentos();
+    $assentosDisponiveis = $clienteWS->comprarAssento(1,"A","70","2020","188");
+    echo $assentosDisponiveis;
 
     echo '
     <html>

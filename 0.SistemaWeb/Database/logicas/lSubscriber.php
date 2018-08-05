@@ -13,6 +13,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 date_default_timezone_set('America/Sao_Paulo');
 
+include_once 'ILogica.php';
+
 /**
  * Classe de lógica para manipulação da tabela tSubscriber.xml
  * 
@@ -29,7 +31,7 @@ date_default_timezone_set('America/Sao_Paulo');
  * @var string $tablePathSubscriber  File path da tabela tSubscriber.xml
  * 
  */
-class lSubscriber {
+class lSubscriber implements ILogica {
 	public $codigo;
 	public $nome;
 	public $cpf;

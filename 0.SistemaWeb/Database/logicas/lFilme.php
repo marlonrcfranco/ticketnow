@@ -13,6 +13,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 date_default_timezone_set('America/Sao_Paulo');
 
+include_once 'ILogica.php';
+
 /**
  * Classe de lógica para manipulação da tabela tFilme.xml
  * 
@@ -29,7 +31,7 @@ date_default_timezone_set('America/Sao_Paulo');
  * @var string $tablePathFilme  File path da tabela tFilme.xml
  * 
  */
-class lFilme {
+class lFilme implements ILogica {
 	public $codigo;
 	public $titulo;
 	public $descricao;
@@ -62,12 +64,8 @@ class lFilme {
 		$this->elenco = null;
 		$this->reg_date = null;
 		$this->semEspaco = false;
-		// $this->tablePathFilme = $_SERVER['DOCUMENT_ROOT']."/Database/db/tFilme.xml";
-<<<<<<< HEAD
-		$this->tablePathFilme = "../db/tFilme.xml";
-=======
+		//$this->tablePathFilme = $_SERVER['DOCUMENT_ROOT']."/Database/db/tFilme.xml";
 		$this->tablePathFilme = "0.SistemaWeb/Database/db/tFilme.xml";
->>>>>>> 2df839b136d17fd477c669076363a5371f899f10
     }
 	
 

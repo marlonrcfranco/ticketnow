@@ -12,7 +12,7 @@
 
         private function carregarConfiguracoesWebService() {
             $GLOBALS["portaServidor"] = 56000;
-            $GLOBALS["ipServidor"] = "localhost";   
+            $GLOBALS["ipServidor"] = "172.16.0.114";   
         }
 
         public function consultarTodosAssentos() {
