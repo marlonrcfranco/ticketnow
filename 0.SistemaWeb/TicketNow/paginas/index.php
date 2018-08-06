@@ -14,13 +14,33 @@
         
         <div class="base-home">
 
-            <h1 class="titulo"><span class="cor">LANÇAMENTOS</span> 2018</h1>
+            <h1 class="titulo"><span class="cor">EM CARTAZ</span></h1>
 
             <div class="gallery">
                 <a target="_blank" href="filme_titanic.php">
                     <img src="../img/filme_titanic.jpg" alt="Cinque Terre" width="400" height="500">
                  </a>
             </div>
+
+            <div class="gallery">
+                <a target="_blank" href="filme_titanic.php">
+                    <img src="../img/filme_titanic.jpg" alt="Cinque Terre" width="400" height="500">
+                 </a>
+            </div>
+
+             <div class="gallery">
+                <a target="_blank" href="filme_titanic.php">
+                    <img src="../img/filme_titanic.jpg" alt="Cinque Terre" width="400" height="500">
+                 </a>
+            </div>
+
+            <div class="gallery">
+                <a target="_blank" href="filme_titanic.php">
+                    <img src="../img/filme_titanic.jpg" alt="Cinque Terre" width="400" height="500">
+                 </a>
+            </div>
+            <br>
+            <h1 class="titulo"><span class="cor">LANÇAMENTOS</span> 2018</h1>
 
             <div class="gallery">
                 <a target="_blank" href="fjords.jpg">

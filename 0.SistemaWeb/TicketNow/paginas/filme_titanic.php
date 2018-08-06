@@ -25,7 +25,7 @@
         <div class="coluna-direita">
                 <?php
                     include_once "../../Database/logicas/LogicaFactory.php";
-                    //$oLogicaFactory = LogicaFactory::getInstance();
+                    $oLogicaFactory = LogicaFactory::getInstance();
                     //$oFilme = $oLogicaFactory->criarLogica("filme");
 
                     //print_r($oFilme->getFilmeByTitulo("Teste, o Filme parte 1"));
