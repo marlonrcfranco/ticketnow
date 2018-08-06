@@ -1,5 +1,5 @@
 <?php
-
+namespace TicketNow;
 /**
  * ..:: Logica para manipulacao da tabela tFilme.xml ::..
  * 
@@ -65,7 +65,7 @@ class lFilme implements ILogica {
 		$this->reg_date = null;
 		$this->semEspaco = false;
 		//$this->tablePathFilme = $_SERVER['DOCUMENT_ROOT']."/Database/db/tFilme.xml";
-		$this->tablePathFilme = "0.SistemaWeb/Database/db/tFilme.xml";
+		$this->tablePathFilme = "../db/tFilme.xml";
     }
 	
 

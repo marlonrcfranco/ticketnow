@@ -1,9 +1,8 @@
 <?php
-namespace TicketNow\Database\logicas;
-
-include_once 'lFilme.php';
-include_once 'lFilmeSubscriber.php';
-include_once 'lSubscriber.php';
+namespace TicketNow;
+require_once "../Database/logicas/lFilme.php";
+require_once '../Database/logicas/lFilmeSubscriber.php';
+require_once '../Database/logicas/lSubscriber.php';
 
 class LogicaFactory {
     private static $instance = NULL;

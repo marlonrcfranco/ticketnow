@@ -1,5 +1,5 @@
 <?php
-
+namespace TicketNow;
 /**
  * ..:: Logica para manipulacao da tabela tFilmeSubscriber.xml ::..
  * 

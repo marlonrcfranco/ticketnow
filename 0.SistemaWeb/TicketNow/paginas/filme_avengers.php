@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>mjailton</title>
+<title>Avengers</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" type="text/css" href="../css/filme.css">
@@ -20,7 +20,7 @@
 
         <div class="coluna-esquerda">
             <div class"capa-filme">
-                <img src="../img/filme_titanic.jpg">
+                <img src="../img/filme_avenger.jpg">
             </div>
         </div>
 
@@ -35,19 +35,11 @@
                 <p><b>Kathy Bates:</b> Molly Brown</p>
 
                 <br>
-                <div align="center" class="coluna-direita-dir">
-                    <a class="btn" href="comprar.php?filme=Titanic">Comprar Ingresso</a>
-                </div>
-                <div align="center" class="coluna-direita-esq">
-                    <button class="btn" type="submit" id="btnConsultarTodosIngressos" onclick="ajaxPost('../scripts/consultarTodosIngressos.php', '#resultado-consulta')"> Ver assentos disponíveis </button>
-                </div>
-                    
-            <div id="resultado-consulta"></div>
-            <div id="resultado-informacoes"></div>
-            </div>
+                
+                <a class="btn" href="avisarQuandoDisponivel.php?filme=Avenger">Avise-me quando estiver disponivel</a>
+              
         </div>
 
-        
 
 		
         
