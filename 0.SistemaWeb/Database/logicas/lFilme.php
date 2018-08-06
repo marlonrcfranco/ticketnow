@@ -70,7 +70,7 @@ class lFilme implements ILogica {
 	
 
 	/**
-	 * createTableFilme
+	 * createTable
 	 *
 	 * Metodo para a criacao da tabela Filme.xml, contendo o primeiro registro como Template.
 	 * 
@@ -78,7 +78,7 @@ class lFilme implements ILogica {
 	 * @return int 1|0	Retorna 1 se houve ERRO, ou 0 se a criacao da tabela foi realizada com sucesso.
 	 * 
 	 */
-	public function createTableFilme() {
+	public function createTable() {
 		$filePathFilme = $this->tablePathFilme;
 		$file = fopen($filePathFilme, "w+");
 	$template = <<<XML
@@ -217,7 +217,7 @@ XML;
 	 * @return string "Sucesso"|"ERRO"
 	 * 
 	 */
-	public function insertFilmeCompleto(string $titulo, string $descricao, string $genero, string $ano, string $avaliacao=null, string $diretor=null, string $elenco=null) {
+	public function insert(string $titulo, string $descricao, string $genero, string $ano, string $avaliacao=null, string $diretor=null, string $elenco=null) {
 		$tablePath  = $this->tablePathFilme;
 		$domXML = new DOMDocument('1.0');
 		$domXML->preserveWhiteSpace = false;
