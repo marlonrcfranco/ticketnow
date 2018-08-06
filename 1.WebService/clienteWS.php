@@ -32,7 +32,7 @@
         $clienteWS = new SoapClient("http://".$GLOBALS["ipServidor"].":".$GLOBALS["portaServidor"]."/ticketnowws?wsdl");
 
         $aux = $clienteWS->comprarIngresso($numeroAssento, $letraFileira, $codCartao, $dataVencimento, $digitoVerificador);
-        echo $aux;
+        return $aux;
     }
 
     function consultarAssento($numeroAssento, $letraFileira) {

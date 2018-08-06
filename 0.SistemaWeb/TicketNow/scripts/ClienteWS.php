@@ -7,7 +7,7 @@
             $this->carregarConfiguracoesWebService();
             
             $this->clienteWS = new SoapClient("http://".$GLOBALS["ipServidor"].":".$GLOBALS["portaServidor"]."/ticketnowws?wsdl");
-            echo "Cliente do WS conectado<br>";
+            //echo "Cliente do WS conectado<br>";
         }
 
         private function carregarConfiguracoesWebService() {

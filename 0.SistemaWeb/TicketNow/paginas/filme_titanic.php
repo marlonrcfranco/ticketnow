@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" type="text/css" href="../css/filme.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="../js/post.js"></script>
 </head>
 
 <body>
@@ -13,9 +15,7 @@
    
 	<div class="base-central">
 
-		
-        
-        
+
         <div class="coluna-esquerda">
             <div class"capa-filme">
                 <img src="../img/filme_titanic.jpg">
@@ -23,12 +23,21 @@
         </div>
 
         <div class="coluna-direita">
-            <h3>Titanic: O Retorno de Jack</h3>
+                <?php
+                    include_once "../../Database/logicas/LogicaFactory.php";
+                    //$oLogicaFactory = LogicaFactory::getInstance();
+                    //$oFilme = $oLogicaFactory->criarLogica("filme");
+                    //print_r($oFilme->getFilmeByTitulo("Teste, o Filme parte 1"));
+                ?>
+                <div class="col">
+                    <a class="btn" href="comprar.php?filme=Titanic">Comprar Ingresso</a>
+                </div>
 
-            <form action="../scripts/consultarTodosIngressos.php" method="POST">
-                    <label>Nome</label>
-                    <input type="submit" name="btnConsultarTodosIngressos" id="button" value="Consultar Ingressos" class="btn">
-            </form>
+                <div class="col">
+				    <button class="btn" type="submit" id="btnConsultarTodosIngressos" onclick="ajaxPost('../scripts/consultarTodosIngressos.php', '#resultado-consulta')"> Consultar Ingressos </button>
+                </div>
+
+            <div id="resultado-consulta"></div>
         </div>
 
         

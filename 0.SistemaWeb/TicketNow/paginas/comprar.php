@@ -4,6 +4,8 @@
 <title>Comprar Ingresso</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="../css/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="../js/post.js"></script>
 </head>
 
 <body>
@@ -14,41 +16,35 @@
         
         <div class="base-home">
             
-		<h1 class="titulo"><span class="cor">Novo</span> cadastro</h1>
-            Voce esta comprando o Filme: <?php echo $_GET["filme"];?>
+		<h1 class="titulo"><span class="cor">Comprando</span> ingresso</h1>
+           <h2><?php echo $_GET["filme"];?></h2>
             <div class="base-formulario">	
-                <form action="#" method="POST">
+                <form name="form_compra" id="form_compra" onsubmit="return false;">
+                    <label>Numero do Assento</label>
+                        <input style="width: 65px;" maxlength="4" name="txt_assento" value="" type="text" placeholder="EX: 10,A">
+
                     <label>Nome</label>
-                        <input name="txt_nome" value="" type="text" placeholder="Insira umm nome">
+                        <input name="txt_nome" value="" type="text" placeholder="Insira um nome">
+
                     <label>Email</label>
                         <input name="txt_email" value="" type="text" placeholder="Insira um email">
-                    <label>Endereço</label>
-                        <input name="txt_endereco" value="" type="text" placeholder="Insira seu endereço">	
-                    <div class="col">
-                        <label>Telefone</label>
-                        <input name="txt_fone" value="" type="text" placeholder="Insira seu telefone">
-                    </div>	
 
-                    <div class="col">
-                        <label>Bairro</label>
-                        <input name="txt_fone" value="" type="text" placeholder="Insira seu bairro">
+                    <label>Cartao de Crédito</label>
+                        <input maxlength="16" name="txt_numero_cartao" value="" type="text" placeholder="Insira o número do seu cartão">	
+                    
+                    <div class="col"> 
+                        <label>Validade</label>
+                            <input maxlength="4" name="txt_validade_cartao" value="" type="text" placeholder="Insira a validade do cartão">
                     </div>
 
                     <div class="col">
-                        <label>CEP</label>
-                        <input name="txt_fone" value="" type="text" placeholder="Insira seu CEP">
-                    </div>	
-
-                    <div class="col">
-                        <label>CPF</label>
-                        <input name="txt_fone" value="" type="text" placeholder="Insira seu CPF">
+                        <label>Digito</label>
+                            <input maxlength="3" name="txt_digito_cartao" value="" type="text" placeholder="Insira o digito verificador">
                     </div>
+                    <button class="btn" type="submit" id="btnComprarIngresso" onclick="ajaxPost('../scripts/comprarIngresso.php', '#resultado-compra')"> Comprar Ingresso</button>
 
-                    <input type="hidden" name="acao" value="Cadastrar">
-                    <input type="hidden" name="id" value="">
-                    <input type="submit" value="Cadastrar" class="btn">
-                    <input type="reset" name="Reset" id="button" value="Limpar" class="btn limpar">
                 </form>
+                <div id="resultado-compra"></div>
             </div>	
 
 
