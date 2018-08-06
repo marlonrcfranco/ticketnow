@@ -11,4 +11,6 @@
 
     $oFilmeSubject->attach($oInscritoObserver);
 
+    echo "Obrigado por se inscrever no Feed";
+
 ?>

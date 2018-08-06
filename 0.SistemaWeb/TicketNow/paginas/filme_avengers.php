@@ -16,7 +16,7 @@
    
 	<div class="base-central">
 
-        <div class="titulo-filme"><h1>Titanic</h1></div>
+        <div class="titulo-filme"><h1>Avengers</h1></div>
 
         <div class="coluna-esquerda">
             <div class"capa-filme">
@@ -26,18 +26,20 @@
 
         <div class="coluna-direita">
                 <div class="titulo-descricao"><h2>Leia a Sinopse<h2></div>
-                <p>Jack Dawson (Leonardo DiCaprio) é um jovem aventureiro que, na mesa de jogo, ganha uma passagem para a primeira viagem do transatlântico Titanic. Trata-se de um luxuoso e imponente navio, anunciado na época como inafundável, que parte para os Estados Unidos. Nele está também Rose DeWitt Bukater (Kate Winslet), a jovem noiva de Caledon Hockley (Billy Zane). Rose está descontente com sua vida, já que sente-se sufocada pelos costumes da elite e não ama Caledon. Entretanto, ela precisa se casar com ele para manter o bom nome da família, que está falida. Um dia, desesperada, Rose ameaça se atirar do Titanic, mas Jack consegue demovê-la da ideia. Pelo ato ele é convidado a jantar na primeira classe, onde começa a se tornar mais próximo de Rose. Logo eles se apaixonam, despertando a fúria de Caledon. A situação fica ainda mais complicada quando o Titanic se choca com um iceberg, provocando algo que ninguém imaginava ser possível: o naufrágio do navio.</p>
+                <p>Loki (Tom Hiddleston) retorna à Terra enviado pelos chitauri, uma raça alienígena que pretende dominar os humanos. Com a promessa de que será o soberano do planeta, ele rouba o cubo cósmico dentro de instalações da S.H.I.E.L.D. e, com isso, adquire grandes poderes. Loki os usa para controlar o dr. Erik Selvig (Stellan Skarsgard) e Clint Barton/Gavião Arqueiro (Jeremy Renner), que passam a trabalhar para ele. No intuito de contê-los, Nick Fury (Samuel L. Jackson) convoca um grupo de pessoas com grandes habilidades, mas que jamais haviam trabalhado juntas: Tony Stark/Homem de Ferro (Robert Downey Jr.), Steve Rogers/Capitão América (Chris Evans), Thor (Chris Hemsworth), Bruce Banner/Hulk (Mark Ruffalo) e Natasha Romanoff/Viúva Negra (Scarlett Johansson). Só que, apesar do grande perigo que a Terra corre, não é tão simples assim conter o ego e os interesses de cada um deles para que possam agir em grupo.</p>
                 <br>
                 <div class="titulo-descricao"><h2>Elenco<h2></div>
-                <p><b>Leonardo DiCaprio:</b> Jack Dawson</p>
-                <p><b>Kate Winslet:</b> Rose Bukater</p>
-                <p><b>Billy Zane:</b> Cal Hockley</p>
-                <p><b>Kathy Bates:</b> Molly Brown</p>
+                <p><b>Robert Downey, Jr.:</b> Tony Stark / Homem de Ferro:</p>
+                <p><b>Chris Evans:</b> Steve Rogers / Capitão América</p>
+                <p><b>Mark Ruffalo:</b> Bruce Banner / Hulk</p>
+                <p><b>Chris Hemsworth:</b> Thor</p>
 
                 <br>
                 
                 <a class="btn" href="avisarQuandoDisponivel.php?filme=Avenger">Avise-me quando estiver disponivel</a>
-              
+            
+                <button class="btn" type="submit" id="btnDisponibilizar" onclick="ajaxPost('../scripts/disponibilizarFilme.php', '#resultado-diponibilizar')"> Disponibilizar o Filme</button>
+                <div id="resultado-diponibilizar"></div>
         </div>
 
 
