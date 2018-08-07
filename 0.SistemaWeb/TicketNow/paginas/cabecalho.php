@@ -13,5 +13,6 @@
         <li><a href="index.php">Home</a></li>
         <li><a href="#">Programação</a></li>
         <li><a href="#">Notícias</a></li>
+        <li><a href="adicionarFilme.php">Adicionar Filme</a></li>
     </ul>
 </nav>		
