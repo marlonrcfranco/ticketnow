@@ -11,7 +11,7 @@
 <nav class="menu">
     <ul>
         <li><a href="index.php">Home</a></li>
-        <li><a href="frm_cadastro.php">Fique por dentro</a></li>
-        <li><a href="lst_contatos.html">Lista de Filmes</a></li>
+        <li><a href="#">Programação</a></li>
+        <li><a href="#">Notícias</a></li>
     </ul>
 </nav>		

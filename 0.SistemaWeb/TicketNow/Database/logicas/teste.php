@@ -1,14 +1,10 @@
 <?php
-
-include_once 'LogicaFactory.php';
-
-echo "inicializando a fabrica<br>";
-$oLogicaFactory = LogicaFactory::getInstance();
-
-echo "Criando um lFilme<br>";
-$lFilme = $oLogicaFactory->criarLogica("Filme");
-
-echo "Criando nova tabela de Filmes";
-$lFilme->createTableFilme();
+    namespace TicketNow;
+    
+    class teste {
+        public function __construct() {
+            echo "Classe teste construida<br>";
+        }
+    }
 
 ?>

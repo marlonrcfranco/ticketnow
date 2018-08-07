@@ -12,7 +12,7 @@ html, body{height:100%; background:#ddd url(../img/fundo.png) fixed no-repeat ce
 body{font-size:1em; font-family: 'rregular';}
 h1, h2, h3, h4, h5{margin:0; padding:0; text-transform:uppercase; font-weight:inherit;}
 p{line-height:1.2em; font-size:1em; letter-spacing:0; color:#263238;}
-a {text-decoration:none; color:#444;}
+a {text-decoration:none; color:black;}
 input ,textarea, select {width:100%; max-width:100%; padding:10px; background:#EEEEEE; border:0}
 input[type=image]{border:0;}
 input[type=date], select{padding:8px}
@@ -72,10 +72,10 @@ ul ,li{list-style:none;}
 	-ms-border-radius:5px 5px 0 0;
 }
 .base-topo .logo{
-	width:195px;
+	width:130px;
 	float:left;
-	height:36px;
-	background:url(../img/logo.png) no-repeat;
+	height:50px;
+	background:url(../img/logo-ticketnow.png) no-repeat;
 	margin-top:10px;
 }
 .base-topo .base-busca{
@@ -260,13 +260,16 @@ ul ,li{list-style:none;}
 	-o-border-radius:3px;
 	text-transform:uppercase;
 	text-align: center;
-	background:rgb(161, 160, 160);
-	font-size:.9em;
-	width: 50%;
+    background:#323232;
+	font-size:.8em;
+	width: 100%;
+    align-content: center;
+    color: #fff;
 }
 .btn:hover{
 	background:rgb(249, 249, 252);
 	cursor:pointer;
+    color: black;
 }
 
 

@@ -1,12 +1,12 @@
 <?php
 
 
-include_once "FilmeSubject.php";
+    include_once "FilmeSubject.php";
 
-$oFilmeSubject = new FilmeSubject();
+    $oFilmeSubject = new FilmeSubject();
 
-$oFilmeSubject->notify();
+    $oFilmeSubject->notify();
 
-echo "Filme Disponibilizado";
+    echo "Filme Disponibilizado";
 
 ?>

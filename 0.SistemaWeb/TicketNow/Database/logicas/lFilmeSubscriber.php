@@ -231,18 +231,14 @@ XML;
 		if($titulo == null) {
 			return "ERRO: Campo 'Titulo' é obrigatório.";
 		}
-		if($this->verificaTituloFilme($titulo)){
-			return "ERRO: Não há Filme cadastrado com este Título.";
-		}
+
 		$tituloElement = $domXML->createElement("titulo", $titulo);
 		$FilmeSubscriber->appendChild($tituloElement);
 		// ******* Inserção da Email *******
 		if($email == null) {
 			return "ERRO: Campo 'Email' é obrigatório.";
 		}
-		if($this->verificaEmailSubscriber($email)){
-			return "ERRO: Não há Subscriber cadastrado com este email.";
-		}
+
 		$emailElement = $domXML->createElement("email", $email);
 		$FilmeSubscriber->appendChild($emailElement);
 		// ******* Inserção da Data de Registro no Sitema *******

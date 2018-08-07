@@ -63,7 +63,7 @@
 
     //print_r($matriz);
 
-  echo "<table border='1'>
+  echo "<table border='1' align='center'>
 
       <th> </th>
       <th>A</th>
