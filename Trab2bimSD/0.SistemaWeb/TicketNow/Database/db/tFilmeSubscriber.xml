@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <filmesubscriber>
+    <codigo>X0000</codigo>
+    <titulo>Template, o Filme</titulo>
+    <email>template.junior@gmail.com</email>
+    <reg_date>1993-05-31 23:59:59</reg_date>
+  </filmesubscriber>
+  <filmesubscriber>
+    <codigo>X0001</codigo>
+    <titulo>Template, o Filme</titulo>
+    <email>teste.1@email.com</email>
+    <reg_date>2018-08-04 22:23:37</reg_date>
+  </filmesubscriber>
+  <filmesubscriber>
+    <codigo>X0002</codigo>
+    <titulo>Template, o Filme</titulo>
+    <email>teste.2@email.com</email>
+    <reg_date>2018-08-04 22:23:37</reg_date>
+  </filmesubscriber>
+</root>
