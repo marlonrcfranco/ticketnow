@@ -1,3 +1,8 @@
+[![GitHub repo size](https://img.shields.io/github/repo-size/marlonrcfranco/Sistema-para-Gestao-de-Clinica-Medica)](https://github.com/marlonrcfranco/Sistema-para-Gestao-de-Clinica-Medica)
+[![GitHub top language](https://img.shields.io/github/languages/top/marlonrcfranco/Sistema-para-Gestao-de-Clinica-Medica)](https://github.com/marlonrcfranco/Sistema-para-Gestao-de-Clinica-Medica)
+![GitHub contributors](https://img.shields.io/github/contributors/marlonrcfranco/Sistema-para-Gestao-de-Clinica-Medica)
+[![GitHub stars](https://img.shields.io/github/stars/marlonrcfranco/Sistema-para-Gestao-de-Clinica-Medica?style=social)](https://github.com/marlonrcfranco/Sistema-para-Gestao-de-Clinica-Medica/stargazers)
+
 # Ticket Now
 O projeto se destina a criação de um sistema distribuído para compra de ingressos para um cinema.<br><br>
 Este trabalho é referente ao segundo bimestre (2018) das disciplinas 23098-Sistemas Distribuídos (turma U - 2018) e 23097-Projeto e Desenvolvimento de Sistemas II (turma U - 2018) do curso de Engenharia de Computação da Universidade Federal do Rio Grande - FURG.
