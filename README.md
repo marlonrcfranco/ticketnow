@@ -1,7 +1,8 @@
-[![GitHub repo size](https://img.shields.io/github/repo-size/marlonrcfranco/Sistema-para-Gestao-de-Clinica-Medica)](https://github.com/marlonrcfranco/Sistema-para-Gestao-de-Clinica-Medica)
-[![GitHub top language](https://img.shields.io/github/languages/top/marlonrcfranco/Sistema-para-Gestao-de-Clinica-Medica)](https://github.com/marlonrcfranco/Sistema-para-Gestao-de-Clinica-Medica)
-![GitHub contributors](https://img.shields.io/github/contributors/marlonrcfranco/Sistema-para-Gestao-de-Clinica-Medica)
-[![GitHub stars](https://img.shields.io/github/stars/marlonrcfranco/Sistema-para-Gestao-de-Clinica-Medica?style=social)](https://github.com/marlonrcfranco/Sistema-para-Gestao-de-Clinica-Medica/stargazers)
+[![GitHub repo size](https://img.shields.io/github/repo-size/marlonrcfranco/ticketnow)](https://github.com/marlonrcfranco/ticketnow)
+[![GitHub top language](https://img.shields.io/github/languages/top/marlonrcfranco/ticketnow)](https://github.com/marlonrcfranco/ticketnow)
+[![GitHub stars](https://img.shields.io/github/stars/marlonrcfranco/ticketnow?style=social)](https://github.com/marlonrcfranco/ticketnow/stargazers)
+
+
 
 # Ticket Now
 O projeto se destina a criação de um sistema distribuído para compra de ingressos para um cinema.<br><br>
