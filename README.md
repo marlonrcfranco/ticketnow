@@ -1,8 +1,8 @@
 [![GitHub repo size](https://img.shields.io/github/repo-size/marlonrcfranco/ticketnow)](https://github.com/marlonrcfranco/ticketnow)
 [![GitHub top language](https://img.shields.io/github/languages/top/marlonrcfranco/ticketnow)](https://github.com/marlonrcfranco/ticketnow)
-[![GitHub watchers](https://img.shields.io/github/watchers/marlonrcfranco/ticketnow?style=social)](https://github.com/marlonrcfranco/ticketnow/watchers)
 [![GitHub stars](https://img.shields.io/github/stars/marlonrcfranco/ticketnow?style=social)](https://github.com/marlonrcfranco/ticketnow/stargazers)
-
+[![GitHub forks](https://img.shields.io/github/forks/marlonrcfranco/ticketnow?style=social)](https://github.com/marlonrcfranco/ticketnow/network/members)
+[![GitHub watchers](https://img.shields.io/github/watchers/marlonrcfranco/ticketnow?style=social)](https://github.com/marlonrcfranco/ticketnow/watchers)
 
 
 # Ticket Now
